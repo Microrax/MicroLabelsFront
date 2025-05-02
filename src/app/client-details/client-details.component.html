@@ -1,0 +1,75 @@
+<body>
+  <h1><b>CLIENT {{client.nombre.toUpperCase()}}</b></h1>
+
+
+  <div class="row">
+    <div class="col1">
+      <mat-form-field class="matform" appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput placeholder="Placeholder" disabled [value]="client.id">
+        <mat-icon matSuffix>check</mat-icon>
+      </mat-form-field>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Client Code</mat-label>
+          <input placeholder="Input disabled" matInput disabled [value]="client.clientCode">
+          <mat-icon matSuffix>check</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Placeholder" disabled [value]="client.nombre">
+          <mat-icon matSuffix>check</mat-icon>
+        </mat-form-field>
+      </p>
+    </div>
+    <div class="col2">
+      <button mat-raised-button color="accent" aria-label="Delete Icon" class="boton" (click)="openDialog()">
+        Add Configuration
+      </button>
+    </div>
+  </div>
+  <div class="filter">
+    <mat-form-field class="filter">
+      <mat-label>LabelID Filter</mat-label>
+      <input matInput (keyup)="applyFilter()" [(ngModel)]="filter" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-table #table [dataSource]="configlist" matSort>
+      <ng-container matColumnDef="ID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Configuration ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="IDClient">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Client ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.codClient}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="IDConfiguration">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Label ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.discriminator}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Delete">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-mini-fab color="accent" aria-label="Delete Icon" (click)="delete(row.discriminator)">
+            <mat-icon aria-hidden="false" aria-label="delete icon">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+    <mat-paginator #paginator
+                   [length]="config.length"
+                   [pageSizeOptions]="[2, 10, 20]"
+                   [showFirstLastButtons]="true"
+                   (page)="OnPageChange($event)">
+    </mat-paginator>
+  </div>
+</body>

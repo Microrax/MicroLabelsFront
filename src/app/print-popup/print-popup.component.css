@@ -1,0 +1,84 @@
+
+body {
+  background-color: #5f5f5f
+}
+
+h1 {
+  padding: 3%;
+  text-align: center;
+  color: mediumaquamarine
+}
+
+div {
+  width: 80%;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  font-size: 14px;
+  width: 30%;
+}
+
+  mat-form-field.filter {
+    font-size: 14px;
+    width: 100%;
+  }
+
+button {
+  margin-top: 10%;
+  margin-left: 28%;
+}
+
+.matform {
+  width: 60%;
+}
+
+.col1 {
+  width: 160%;
+}
+
+.textarea {
+  width: 60%;
+}
+
+
+.col2 {
+  margin-left: auto;
+}
+
+.visualizar {
+  width: 30%;
+  padding-left: 60%;
+}
+
+.botonvis {
+  padding-left: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 40px;
+  margin-left: 5%;
+  float: left;
+}
+
+
+.number {
+  width: 30%;
+}
+
+.row {
+  display: flex;
+}
+
+.configtable {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.app-modal-window .modal-dialog {
+  width: 1500px;
+}
+
+.container {
+  width: 1000px;
+  height: 500px;
+}

@@ -1,0 +1,56 @@
+<div class="container">
+  <h1><b>ADD CONFIGURATIONS</b></h1>
+
+  <div class="filter">
+      <mat-form-field class="filter">
+        <mat-label>Template Filter</mat-label>
+        <input matInput (keyup)="applyFilter()" [(ngModel)]="filter" placeholder="Filter">
+      </mat-form-field>
+    </div>
+  <div>
+    <mat-table class="configtable" [dataSource]="labellist" matSort>
+
+      <ng-container matColumnDef="ID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Template">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Template </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.template}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="LabelType">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> LabelType </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.labelType}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="DPI">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> DPI </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.dpi}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="Add">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Add </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button mat-mini-fab color="accent" aria-label="Delete Icon" (click)="addConfig(row.id)">
+            <mat-icon aria-hidden="false" aria-label="delete icon">add</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+
+    </mat-table>
+    <mat-paginator #paginator
+                   [length]="label.length"
+                   [pageSizeOptions]="[2, 10, 20]"
+                   [showFirstLastButtons]="true"
+                   (page)="OnPageChange($event)">
+    </mat-paginator>
+  </div>
+</div>

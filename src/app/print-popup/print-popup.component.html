@@ -1,0 +1,68 @@
+<body>
+  <div class="container">
+    <div>
+      <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Printing Stand </mat-label>
+          <input placeholder="Puesto de impresión" matInput [(ngModel)]="impresion">
+          <mat-icon matSuffix>check</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Item SKU</mat-label>
+          <input min="1" max="3000" placeholder="SKU" matInput [(ngModel)]="sku">
+          <mat-icon matSuffix>check</mat-icon>
+        </mat-form-field>
+        <button mat-raised-button color="accent" aria-label="Delete Icon" (click)="printLabel()">
+          PRINT
+        </button>
+      </p>
+    </div>
+    <div class="filter">
+      <mat-form-field class="filter">
+        <mat-label>Name Filter</mat-label>
+        <input matInput (keyup)="applyFilter()" [(ngModel)]="filter" placeholder="Filter">
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-table #table [dataSource]="clientList" matSort>
+
+        <ng-container matColumnDef="Select">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Select </mat-header-cell>
+          <mat-cell *matCellDef="let client">
+            <button mat-mini-fab color="accent" routerLink="detail" aria-label="Select Icon" (click)="SelectClient(client)">
+              <i class="material-icons">{{icon}}</i>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ID">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+        </ng-container>
+
+
+        <ng-container matColumnDef="ClientCode">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ClientCode </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.clientCode}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="Name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+      </mat-table>
+      <mat-paginator #paginator
+                     [length]="clients.length"
+                     [pageSizeOptions]="[2, 10, 20]"
+                     [showFirstLastButtons]="true"
+                     (page)="OnPageChange($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,64 @@
+<body>
+  <h1><b>CLIENTS LIST</b></h1>
+
+  <div class="filter">
+    <mat-form-field >
+      <mat-label>ClientName Filter</mat-label>
+      <input matInput (keyup)="applyFilter()" [(ngModel)]="filter" placeholder="Filter">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-table #table [dataSource]="clientlist" matSort>
+
+      <ng-container matColumnDef="Details">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Details </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          <router-outlet>
+            <button mat-mini-fab color="accent" routerLink="detail" aria-label="Delete Icon" (click)="detail(client)">
+              <i class="material-icons">remove_red_eye</i>
+            </button>
+          </router-outlet>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="ID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
+      </ng-container>
+
+
+      <ng-container matColumnDef="ClientCode">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> ClientCode </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.clientCode}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="Eliminar">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Delete </mat-header-cell>
+        <mat-cell *matCellDef="let client">
+          <button mat-mini-fab color="accent" aria-label="Delete Icon" (click)="delete(client.id)">
+            <mat-icon aria-hidden="false" aria-label="delete icon">delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+
+    </mat-table>
+    <mat-paginator #paginator
+                   [length]="clients.length"
+                   [pageSizeOptions]="[2, 10, 20]"
+                   [showFirstLastButtons]="true"
+                   (page)="OnPageChange($event)">
+    </mat-paginator>
+    <button (click)="post()" mat-raised-button color="accent">Actualizar</button>
+
+  </div>
+</body>
+

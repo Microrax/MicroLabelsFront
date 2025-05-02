@@ -1,0 +1,64 @@
+<body>
+  <h1><b>LABEL DETAILS</b></h1>
+
+  <!-- ID -- LABELTYPE - TEMPLATE-->
+
+  <div class="visualizar">
+    <button mat-raised-button color="accent" aria-label="Delete Icon" class="botonvis" (click)="putLabel()">
+      Update
+    </button>
+
+    <button mat-raised-button color="accent" aria-label="Delete Icon" class="botonvis" (click)="previewLabel()">
+      Preview
+    </button>
+
+    <button mat-raised-button color="accent" aria-label="Delete Icon" class="botonvis" (click)="printLabel()">
+      Print
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col1">
+      <mat-form-field class="matform" appearance="fill">
+        <mat-label>ID</mat-label>
+        <input matInput placeholder="Placeholder" disabled [value]="label.id">
+        <mat-icon matSuffix>check</mat-icon>
+      </mat-form-field>
+      <p>
+        <mat-form-field class="matform" appearance="fill">
+          <mat-label>Template</mat-label>
+          <input matInput placeholder="Placeholder" disabled [value]="label.template">
+          <mat-icon matSuffix>check</mat-icon>
+        </mat-form-field>
+      </p>
+      <div class="col2">
+      </div>
+      <p>
+        <mat-form-field class="number" appearance="fill">
+          <mat-label>LabelType</mat-label>
+          <input placeholder="Input disabled" min="0" max="4" matInput disabled [value]="label.labelType">
+          <mat-icon matSuffix>check</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="number" appearance="fill">
+          <mat-label>Dpi</mat-label>
+          <input type="number" min="1" max="3000" placeholder="DPI NUMBER" matInput [(ngModel)]="label.dpi">
+          <mat-icon matSuffix>check</mat-icon>
+        </mat-form-field>
+      </p>
+    </div>
+  </div>
+  <!-- ZPL AND SQL HORIZONTAL-->
+  <div>
+    <mat-form-field appearance="fill" class="textarea">
+      <mat-label>Zpl</mat-label>
+      <textarea placeholder="ZPL" matInput [(ngModel)]="label.zpl"></textarea>
+      <mat-icon matSuffix>check</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="textarea">
+      <mat-label>SQL</mat-label>
+      <textarea placeholder="SQL QUERY" matInput [(ngModel)]="label.sql"></textarea>
+      <mat-icon matSuffix>check</mat-icon>
+    </mat-form-field>
+  </div>
+</body>

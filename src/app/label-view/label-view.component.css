@@ -1,0 +1,19 @@
+body {
+  background-color: #5f5f5f
+}
+
+div {
+  width: 80%;
+  margin: 0 auto;
+}
+
+mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+h1 {
+  padding: 3%;
+  text-align: center;
+  color: mediumaquamarine
+}
